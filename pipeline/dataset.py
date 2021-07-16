@@ -13,8 +13,8 @@ W = 256
 
 
 def process_data():
-    image_path = "../data/CameraRGB/"
-    mask_path = "../data/CameraSeg/"
+    image_path = "/Users/vishalvohra/Documents/GitHub/AI-Road-Segmentation/pipeline/CameraRGB"
+    mask_path = "/Users/vishalvohra/Documents/GitHub/AI-Road-Segmentation/pipeline/CameraSeg"
     image_list = os.listdir(image_path)
     mask_list = os.listdir(mask_path)
     image_list = [image_path + i for i in image_list]
@@ -26,7 +26,7 @@ def process_data():
         m_img = generate_mask(m_img)
         new_masks.append(m_img)
 
-    cv2.imread(new_masks[0])
+    cv2.imshow(new_masks[0])
     plt.imshow("plt", new_masks[0])
     return image_list, new_masks
 
@@ -84,7 +84,6 @@ def preprocess(x, y):
     return image, mask
 
 
-if __name__ == "__main__":
     (train_x, train_y), (valid_x, valid_y), (test_x, test_y) = load_data()
     print(f"Dataset: Train: {len(train_x)} - Valid: {len(valid_x)} - Test: {len(test_x)}")
 
