@@ -76,14 +76,6 @@ def preprocess(x, y):
 
         return image, mask
 
-    image, mask = tf.numpy_function(f, [x, y], [tf.float32, tf.int32])
-    mask = tf.one_hot(mask, 3, dtype=tf.int32)
-    image.set_shape([H, W, 3])
-    mask.set_shape([H, W, 3])
-
-    return image, mask
-
-
     (train_x, train_y), (valid_x, valid_y), (test_x, test_y) = load_data()
     print(f"Dataset: Train: {len(train_x)} - Valid: {len(valid_x)} - Test: {len(test_x)}")
 
@@ -92,3 +84,10 @@ def preprocess(x, y):
     for x, y in dataset:
         print(x[0])
         print(y[0])
+
+    image, mask = tf.numpy_function(f, [x, y], [tf.float32, tf.int32])
+    mask = tf.one_hot(mask, 3, dtype=tf.int32)
+    image.set_shape([H, W, 3])
+    mask.set_shape([H, W, 3])
+
+    return image, mask
